@@ -1,0 +1,9 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-06_13-12-20",
+            "content": "class Person:\n    def __init__(self, nome:str) -> None:\n        self.__nome = nome\n\n    def getNome(self):\n        return self.__nome\n\n    def setNome(self, nome:str):\n        if nome.strip():\n            self.__nome = nome\n        else:\n            self.__nome = \"Ningu\u00e9m\"\n\n    def __str__(self) -> str:\n        return f\"Nome: {self.__nome}\"\n\nclass Budega:\n    def __init__(self,num_caixas:int) -> None:\n        self.caixas: list[Person | None]= []\n        for _ in range(num_caixas):\n            self.caixas.append(None)\n            self.espera: list[Person]=[]\n    \n    def entrar (self, person :Person):\n        self.espera.append(person)\n\n    def chamar(self, vaga:int):\n        if vaga < 0 or vaga >= len(self.caixas):\n            print(\"fail: caixa inexistente\")\n            return\n        if self.caixas[vaga] is not None:\n            print(\"fail: caixa ocupado\")\n        if len (self.espera )== 0:\n            print(\" fail: sem clientes\")\n        self.caixas[vaga] = self.espera[0]  \n        del self.espera\n",
+            "lines": "36"
+        }
+    ]
+}
