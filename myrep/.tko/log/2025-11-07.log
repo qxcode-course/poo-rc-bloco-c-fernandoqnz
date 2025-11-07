@@ -1,2 +1,5 @@
 2025-11-07 14:19:51, MOVE, v:1, k:poo@budega, mode:PICK
 2025-11-07 14:19:54, EXEC, v:1, k:poo@budega, mode:FREE, size:61
+2025-11-07 16:38:41, MOVE, v:1, k:poo@pula-pula, mode:DOWN
+2025-11-07 18:00:22, MOVE, v:1, k:poo@pula-pula, mode:PICK
+2025-11-07 18:00:24, EXEC, v:1, k:poo@pula-pula, mode:FREE, size:86
