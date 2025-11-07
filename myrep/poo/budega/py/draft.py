@@ -49,3 +49,27 @@ class Budega:
             if pessoa.nome == nome:
                 del self.espera[i]
                 return
+            
+    def __str__(self):
+        caixas = ", ".join([str(x) if x else "----" for x in self.caixas])
+        espera = ", ".join([str(x) for x in self.])
+
+
+    def main():        budega = Budega(3)
+        while True:
+            comando = input().strip().split()
+            if comando[0] == "end":
+                break
+            elif comando[0] == "entrar":
+                mercantil.entrar(Person(comando[1]))
+            elif comando[0] == "chamar":
+                budega.chamar(int(comando[1]))
+            elif comando[0] == "finalizar":
+                budega.finalizar(int(comando[1]))
+            elif comando[0] == "sair":
+                budega.sair(comando[1])
+                
+            else:
+                print("fail: comando invalido")
+            print(budega)
+            
