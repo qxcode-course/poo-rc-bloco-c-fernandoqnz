@@ -1,86 +1,54 @@
 class Kid:
-    def __init__(self, nome: str, idd:int) -> None:
-        self.nome= nome
-        self.idd= idd
-
-    def getIDDname(self) -> str:
-        return f"{self.nome}:{self.idd}"
-    
-    def setIDDname(self, nome: str, idd:int):
-        if nome.strip() and idd >=0:
-            self.nome = nome
-            self.idd = idd
-        else:
-            self.nome = "Ninguém"
-            self.idd = 0
-
+    def __init__(self, nome: str, idd: int) -> None:
+        self.nome = nome
+        self.idd = idd
 
     def __str__(self) -> str:
-        return f"Nome: {self.nome}, Idade: {self.idd}"
-    
+        return f"{self.nome}:{self.idd}"
+
 
 class Pula_pula:
-    def __init__(self, c_esperando:int) -> None:
-        self.esperando: list[Pula_pula | None]= []
-        for _ in range(c_esperando):
-            self.esperando.append(None)
-            self.espera: list[Pula_pula]=[]
-        self.brincando: list[Pula_pula | None]= []
-        for _ in range(c_esperando):
-            self.brincando.append(None)
-            self.brinca: list[Pula_pula]=[]
+    def __init__(self, capacidade: int) -> None:
+        self.capacidade = capacidade
+        self.brincando: list[Kid | None] = [None for _ in range(capacidade)]
+        self.espera: list[Kid] = []
 
-    def entrar (self,pular: Pula_pula):
-        self.espera.append(pular)
+    def entrar(self, kid: Kid):
+        self.espera.append(kid)
 
-    def chamar(self, index:int):
-        if index< 0 or index >= len(self.brincando):
-            print("fail: pulapula inexistente")
+    def chamar(self, index: int):
+        if index < 0 or index >= len(self.brincando):
+            print("fail: índice inexistente")
             return
         if self.brincando[index] is not None:
-            print("fail: pulapula ocupado")
-        if len (self.espera )== 0:
-            print(" fail: sem pulapulas")
-        self.brincando[index] = self.espera[0]  
-        del self.espera
+            print("fail: ocupado")
+            return
+        if len(self.espera) == 0:
+            print("fail: sem crianças esperando")
+            return
+        self.brincando[index] = self.espera.pop(0)
 
-    def finalizar(self, index:int):
-        self.brincando[index]=None
+    def finalizar(self, index: int):
         if index < 0 or index >= len(self.brincando):
-            print("fail: pulapula inexistente")
+            print("fail: índice inexistente")
             return
         if self.brincando[index] is None:
-            print("fail: pulapula vazio")
+            print("fail: vazio")
             return
-        
-    def sair(self, nome: str) -> Pula_pula | None:
-        for i, pular in enumerate(self.espera):
-            if pular.nome == nome:
+        self.brincando[index] = None
+
+    def sair(self, nome: str):
+        for i, kid in enumerate(self.espera):
+            if kid.nome == nome:
                 del self.espera[i]
                 return
-            
+        print("fail: criança não encontrada")
+
     def __str__(self):
-        return f"Pulapula(esperando: {self.esperando}, brincando: {self.brincando})"
+        brincando = ", ".join([str(kid) if kid else "-" for kid in self.brincando])
+        esperando = ", ".join([str(kid) for kid in self.espera])
+        return f"[ {brincando} ] => Espera: [ {esperando} ]"
+
+
+    
         
-
-def main():
-    pula_pula = Pula_pula(3)
-    while True:
-        comando = input().strip().split()
-
-        if comando[0] == "end":
-            break
-        elif comando[0] == "entrar":
-            pula_pula.entrar(Pula_pula(comando[1], int(comando[2])))
-        elif comando[0] == "chamar":
-            pula_pula.chamar(int(comando[1]))
-        elif comando[0] == "finalizar":
-            pula_pula.finalizar(int(comando[1]))
-        elif comando[0] == "sair":
-            pula_pula.sair(comando[1])
-        else:
-            print("fail: comando invalido")
-        print(pula_pula)
-
-if __name__ == "__main__":
-    main()
