@@ -52,3 +52,27 @@ class Budega:
         caixas_str = ", ".join([str(p) if p else "-" for p in self.caixas])
         espera_str = ", ".join([str(p) for p in self.espera])
         return f"[{caixas_str}] => Espera: [{espera_str}]"
+
+def main():
+    budega = Budega
+    while True:
+        line=input()
+        args =line.split(" ")
+        print(f"${' '.join(args)}")
+        cmd= args[0]
+
+        if cmd == "show":
+            print(budega)
+        elif cmd=="call":
+            budega.chamar
+        elif cmd== "finish":
+            budega.finalizar
+        elif cmd== "init":
+            budega.__init__
+        elif cmd=="end":
+            break
+        
+
+
+
+            

@@ -33,10 +33,10 @@ class Pula_pula:
         self.espera: list[Kid] = []
         self.pular: list[Kid] = []
 
-    def criar(self, kid: Kid):
+    def arrive(self, kid: Kid):
         self.espera.append(kid)
     
-    def chamar(self):
+    def enter(self):
         try:
             if len(self.espera) <= 0:
                 raise Exception ("fail: fila vazia")
@@ -44,13 +44,12 @@ class Pula_pula:
         except Exception as e:
             print(e)
             
-    def sair(self):
-        try:
-            if len(self.pular) <= 0:
-                raise Exception ("fail: ninguem brincando")
-            self.espera.append(self.pular.pop(0))
-        except Exception as e:
-            print(e)
+    def leave (self):
+            if  len(self.pular) == 0:
+                return
+            else:
+                self.espera.append(self.pular.pop(0))
+                
 
     def remove(self, nome:str):
         for i, kid in enumerate (self.pular):
@@ -63,14 +62,14 @@ class Pula_pula:
                 self.espera.pop(i)
                 return
             
-        print(f"fail:{nome} nao esta no pula-pula")
+        print(f"fail: {nome} nao esta no pula-pula")
                   
                 
     def __str__(self) -> str:
-        espera = " ,".join(str(kid) for kid in self.espera) 
-        pular = " ,".join(str(kid) for kid in self.pular)
+        espera = ", ".join(str(kid) for kid in reversed(self.espera)) 
+        pular = ", ".join(str(kid) for kid in reversed(self.pular))
 
-        return f"[{espera}]=> [{pular}]"
+        return f"[{espera}] => [{pular}]"
     
 
 
@@ -80,38 +79,28 @@ def main():
     while True:
         line=input()
         args=line.split(" ")
-        print (f"${args[0]}")
+        print(f"${' '.join(args)}")
         cmd= args[0]
+        
         if cmd =="show":
             print(pula_pula)  
         elif cmd=="arrive":
             nome = args[1]
             idade = int(args[2])
-    
-            pula_pula.criar(Kid(nome, idade))
-        
+            pula_pula.arrive(Kid(nome, idade))
+
         elif cmd=="leave":
-            pula_pula.sair()
+            pula_pula.leave()
+
         elif cmd=="remove":
             pula_pula.remove(args[1])
-        elif cmd=="enter":
-            pula_pula.chamar()
 
-            
+        elif cmd=="enter":
+            pula_pula.enter()
+
+        elif cmd=="end":
+            break
             
 
 if __name__ == "__main__":
     main()
-
-
-        
-            
-            
-
-
-            
-
-
-        
-
-

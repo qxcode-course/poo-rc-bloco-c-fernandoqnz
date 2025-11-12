@@ -77,8 +77,113 @@
         },
         {
             "label": "2025-11-12_14-18-14",
-            "content": "class Kid:\n    def __init__(self,nome:str, idade:int) -> None:\n        if nome== \"\":\n            raise Exception(\"fail: nome n\u00e3o pode ser vazio\")\n            \n        elif idade <= 0:\n            raise Exception(\"fail: idade inv\u00e1lida\")\n            \n\n        self.__nome =nome \n        self.__idade=idade\n\n    def getNome(self):\n        return self.__nome\n    \n    def getIdade(self):\n        return self.__idade \n    \n    def setNome(self, nome:str):\n        if nome.strip() == \"\":\n            raise Exception ( \" fail: nome vazio\")\n        self.__nome = nome\n    def setIdade(self, idade:int):\n        if idade <= 0:\n            raise Exception(\" fail: idade inv\u00e1lida\")\n        self.__idade =idade\n\n    def __str__(self) -> str:\n        return f\"{self.__nome}:{self.__idade}\"\n    \nclass Pula_pula:\n    def __init__(self) -> None:\n        self.espera: list[Kid] = []\n        self.pular: list[Kid] = []\n\n    def criar(self, kid: Kid):\n        self.espera.append(kid)\n    \n    def chamar(self):\n        try:\n            if len(self.espera) <= 0:\n                raise Exception (\"fail: fila vazia\")\n            self.pular.append(self.espera.pop(0))\n        except Exception as e:\n            print(e)\n            \n    def sair(self):\n        try:\n            if len(self.pular) <= 0:\n                raise Exception (\"fail: ninguem brincando\")\n            self.espera.append(self.pular.pop(0))\n        except Exception as e:\n            print(e)\n\n    def remove(self, nome:str):\n        for i, kid in enumerate (self.pular):\n            if kid.getNome() == nome:\n                self.pular.pop(i)\n                return \n        \n        for i, kid in enumerate (self.espera):\n            if kid.getNome() == nome:\n                self.espera.pop(i)\n                return\n            \n        print(f\"fail:{nome} nao esta no pula-pula\")\n                  \n                \n    def __str__(self) -> str:\n        printar = \"[\"\n        for i in self.espera:\n            printar += i.getNome()\n        printar += \"] => [\"\n\n        for i in self.pular:\n            printar += i.getNome()\n        \n               \n        \n        for i in self.espera:\n            printar += str(i.getIdade())\n        \n\n        for i in self.pular:\n            printar += str(i.getIdade())\n        printar += \"]\"\n        return printar \n\n\ndef main():\n    pula_pula=Pula_pula() \n    while True:\n        line=input()\n        args=line.split(\" \")\n        print (f\"${args[0]}\")\n        cmd= args[0]\n        if cmd ==\"show\":\n            print(pula_pula)  \n        elif cmd==\"arrive\":\n            nome = args[1]\n            idade = int(args[2])\n    \n            pula_pula.criar(Kid(nome, idade))\n        \n        elif cmd==\"leave\":\n            pula_pula.sair()\n        elif cmd==\"remove\":\n            pula_pula.remove(args[1])\n        elif cmd==\"enter\":\n            pula_pula.chamar()\n\n            \n            \n\nif __name__ == \"__main__\":\n    main()\n\n\n        \n            \n            \n\n\n            \n\n\n        \n\n\n",
+            "content": "@@ -1907,43 +1907,227 @@\n     \n-espera = %22 ,%22.join(str(kid)\n+printar = %22%5B%22%0A        for i in self.espera:%0A            printar += i.getNome()%0A        printar += %22%5D =%3E %5B%22%0A%0A        for i in self.pular:%0A            printar += i.getNome()%0A        %0A               %0A        %0A       \n  for \n-kid\n+i\n  in \n@@ -2137,19 +2137,22 @@\n f.espera\n-) %0A\n+:%0A    \n         \n@@ -2156,41 +2156,59 @@\n    p\n-ul\n+rint\n ar \n++\n = \n-%22 ,%22.join(str(kid)\n+str(i.getIdade())%0A        %0A%0A       \n  for \n-kid\n+i\n  in \n@@ -2221,19 +2221,22 @@\n ular\n-)%0A%0A\n+:%0A    \n         \n retu\n@@ -2235,46 +2235,83 @@\n     \n-return f%22%5B%7Bespera%7D%5D=%3E %5B%7Bpular%7D%5D%22%0A    %0A\n+printar += str(i.getIdade())%0A        printar += %22%5D%22%0A        return printar \n %0A%0A%0Ad\n@@ -2850,16 +2850,43 @@\n amar()%0A%0A\n+            %0A            %0A%0A\n if __nam\n",
             "lines": "129"
+        },
+        {
+            "label": "2025-11-12_21-16-59",
+            "content": "@@ -2607,64 +2607,8 @@\n ar()\n-%0A        elif cmd==%22end%22:%0A            break%0A            \n %0A%0Aif\n",
+            "lines": "114"
+        },
+        {
+            "label": "2025-11-12_21-18-50",
+            "content": "@@ -2042,17 +2042,16 @@\n espera%7D%5D\n- \n =%3E %5B%7Bpul\n",
+            "lines": "117"
+        },
+        {
+            "label": "2025-11-12_21-19-33",
+            "content": "@@ -1938,33 +1938,24 @@\n  for kid in \n-reversed(\n self.espera)\n@@ -1954,17 +1954,16 @@\n .espera)\n-)\n  %0A      \n@@ -2006,17 +2006,8 @@\n  in \n-reversed(\n self\n@@ -2013,17 +2013,16 @@\n f.pular)\n-)\n %0A%0A      \n",
+            "lines": "117"
+        },
+        {
+            "label": "2025-11-12_21-24-50",
+            "content": "@@ -1909,24 +1909,25 @@\n   espera = %22\n+ \n ,%22.join(str(\n@@ -1983,16 +1983,17 @@\n ular = %22\n+ \n ,%22.join(\n",
+            "lines": "117"
+        },
+        {
+            "label": "2025-11-12_21-25-11",
+            "content": "@@ -1914,17 +1914,16 @@\n era = %22,\n- \n %22.join(s\n",
+            "lines": "117"
+        },
+        {
+            "label": "2025-11-12_21-25-19",
+            "content": "@@ -1980,25 +1980,24 @@\n   pular = %22,\n- \n %22.join(str(k\n@@ -2384,16 +2384,21 @@\n rgs%5B2%5D)%0A\n+    %0A\n         \n@@ -2439,45 +2439,8 @@\n e))%0A\n-            print(f%22%7Bnome%7D %7Bidade%7D%22)%0A\n     \n",
+            "lines": "117"
+        },
+        {
+            "label": "2025-11-12_21-27-14",
+            "content": "@@ -2431,16 +2431,53 @@\n idade))%0A\n+            print(f%22%7Bnome%7D %7Bidade%7D%22)%0A\n         \n",
+            "lines": "117"
+        },
+        {
+            "label": "2025-11-12_21-28-14",
+            "content": "@@ -904,22 +904,21 @@\n     def \n-arrive\n+criar\n (self, k\n@@ -972,20 +972,21 @@\n     def \n-ente\n+chama\n r(self):\n@@ -1217,14 +1217,12 @@\n def \n-leave \n+sair\n (sel\n@@ -2241,25 +2241,16 @@\n args%5B0%5D%0A\n-        %0A\n         \n@@ -2407,22 +2407,21 @@\n la_pula.\n-arrive\n+criar\n (Kid(nom\n@@ -2431,16 +2431,24 @@\n idade))%0A\n+        \n %0A       \n@@ -2493,17 +2493,15 @@\n ula.\n-leave\n+sair\n ()%0A\n-%0A\n     \n@@ -2562,17 +2562,16 @@\n rgs%5B1%5D)%0A\n-%0A\n         \n@@ -2615,17 +2615,17 @@\n ula.\n-ente\n+chama\n r()%0A\n-%0A\n     \n",
+            "lines": "116"
+        },
+        {
+            "label": "2025-11-12_21-31-28",
+            "content": "@@ -2209,27 +2209,21 @@\n rint\n+ \n (f%22$%7B\n-' '.join(\n args\n-)\n+%5B0%5D\n %7D%22)%0A\n@@ -2722,8 +2722,73 @@\n  main()%0A\n+%0A%0A        %0A            %0A            %0A%0A%0A            %0A%0A%0A        %0A%0A%0A\n",
+            "lines": "120"
+        },
+        {
+            "label": "2025-11-12_21-33-52",
+            "content": "@@ -973,21 +973,21 @@\n     def \n-leave\n+enter\n (self):%0A\n@@ -1213,21 +1213,21 @@\n     def \n-enter\n+leave\n  (self):\n",
+            "lines": "107"
+        },
+        {
+            "label": "2025-11-12_21-34-57",
+            "content": "@@ -973,21 +973,21 @@\n     def \n-enter\n+leave\n (self):%0A\n@@ -1213,21 +1213,21 @@\n     def \n-leave\n+enter\n  (self):\n",
+            "lines": "107"
+        },
+        {
+            "label": "2025-11-12_21-35-11",
+            "content": "@@ -1391,58 +1391,8 @@\n 0))%0A\n-            self.pular.append(self.espera.pop(0))%0A\n     \n",
+            "lines": "107"
+        },
+        {
+            "label": "2025-11-12_21-36-45",
+            "content": "@@ -1219,32 +1219,45 @@\n f leave (self):%0A\n+        try:%0A\n             if l\n@@ -1297,44 +1297,50 @@\n     \n-self.espera.append(self.pular.pop(0)\n+raise Exception (%22fail: ninguem brincando%22\n )%0A  \n@@ -1353,39 +1353,46 @@\n     \n+s\n el\n-if l\n+f.espera.app\n en\n+d\n (self.\n-espera) %3C= 0:%0A   \n+pular.pop(0))%0A\n     \n@@ -1391,33 +1391,32 @@\n 0))%0A            \n- \n self.pular.appen\n@@ -1441,32 +1441,67 @@\n 0))%0A        \n-        \n+except Exception as e:%0A            print(e)\n %0A%0A    def re\n",
+            "lines": "108"
+        },
+        {
+            "label": "2025-11-12_21-40-07",
+            "content": "@@ -1284,39 +1284,44 @@\n     \n-print(%22fail: ninguem brincando%22\n+self.espera.append(self.pular.pop(0)\n )%0A  \n@@ -1378,220 +1378,62 @@\n     \n-print(%22fail: ninguem esperando%22)%0A            elif len(self.espera) %3E0:%0A                self.pular.append(self.espera.pop(0))%0A            elif len(self.pular):%0A                self.espera.append(self.pular.pop(0))\n+self.pular.append(self.espera.pop(0))%0A                \n %0A%0A  \n",
+            "lines": "106"
+        },
+        {
+            "label": "2025-11-12_21-43-49",
+            "content": "@@ -1526,18 +1526,16 @@\n f.pular)\n-%3E0\n :%0A      \n",
+            "lines": "109"
+        },
+        {
+            "label": "2025-11-12_21-44-04",
+            "content": "@@ -1242,17 +1242,16 @@\n      if \n- \n len(self\n@@ -1258,17 +1258,106 @@\n .pular) \n-=\n+%3C= 0:%0A                print(%22fail: ninguem brincando%22)%0A            elif len(self.espera) %3C\n = 0:%0A   \n@@ -1390,19 +1390,21 @@\n ninguem \n-pul\n+esper\n ando%22)%0A \n@@ -1416,18 +1416,38 @@\n       el\n-se\n+if len(self.espera) %3E0\n :%0A      \n@@ -1502,28 +1502,101 @@\n             \n-    \n+elif len(self.pular)%3E0:%0A                self.espera.append(self.pular.pop(0))\n %0A%0A    def re\n",
+            "lines": "109"
+        },
+        {
+            "label": "2025-11-12_21-48-27",
+            "content": "@@ -1343,38 +1343,37 @@\n            self.\n-espera\n+pular\n .append(self.pul\n@@ -1365,29 +1365,30 @@\n append(self.\n-pular\n+espera\n .pop(0))%0A   \n",
+            "lines": "106"
+        },
+        {
+            "label": "2025-11-12_21-48-56",
+            "content": "@@ -1273,38 +1273,62 @@\n                 \n-return\n+print(%22fail: ninguem pulando%22)\n %0A            els\n",
+            "lines": "106"
+        },
+        {
+            "label": "2025-11-12_21-49-27",
+            "content": "@@ -1744,17 +1744,16 @@\n l:%7Bnome%7D\n- \n  nao est\n",
+            "lines": "106"
+        },
+        {
+            "label": "2025-11-12_21-49-52",
+            "content": "@@ -1742,15 +1742,15 @@\n ail:\n- \n %7Bnome%7D\n+ \n  nao\n",
+            "lines": "106"
+        },
+        {
+            "label": "2025-11-12_21-50-05",
+            "content": "class Kid:\n    def __init__(self,nome:str, idade:int) -> None:\n        if nome== \"\":\n            raise Exception(\"fail: nome n\u00e3o pode ser vazio\")\n            \n        elif idade <= 0:\n            raise Exception(\"fail: idade inv\u00e1lida\")\n            \n\n        self.__nome =nome \n        self.__idade=idade\n\n    def getNome(self):\n        return self.__nome\n    \n    def getIdade(self):\n        return self.__idade \n    \n    def setNome(self, nome:str):\n        if nome.strip() == \"\":\n            raise Exception ( \" fail: nome vazio\")\n        self.__nome = nome\n    def setIdade(self, idade:int):\n        if idade <= 0:\n            raise Exception(\" fail: idade inv\u00e1lida\")\n        self.__idade =idade\n\n    def __str__(self) -> str:\n        return f\"{self.__nome}:{self.__idade}\"\n    \nclass Pula_pula:\n    def __init__(self) -> None:\n        self.espera: list[Kid] = []\n        self.pular: list[Kid] = []\n\n    def arrive(self, kid: Kid):\n        self.espera.append(kid)\n    \n    def enter(self):\n        try:\n            if len(self.espera) <= 0:\n                raise Exception (\"fail: fila vazia\")\n            self.pular.append(self.espera.pop(0))\n        except Exception as e:\n            print(e)\n            \n    def leave (self):\n            if  len(self.pular) == 0:\n                return\n            else:\n                self.espera.append(self.pular.pop(0))\n                \n\n    def remove(self, nome:str):\n        for i, kid in enumerate (self.pular):\n            if kid.getNome() == nome:\n                self.pular.pop(i)\n                return \n        \n        for i, kid in enumerate (self.espera):\n            if kid.getNome() == nome:\n                self.espera.pop(i)\n                return\n            \n        print(f\"fail: {nome} nao esta no pula-pula\")\n                  \n                \n    def __str__(self) -> str:\n        espera = \", \".join(str(kid) for kid in reversed(self.espera)) \n        pular = \", \".join(str(kid) for kid in reversed(self.pular))\n\n        return f\"[{espera}] => [{pular}]\"\n    \n\n\n\ndef main():\n    pula_pula=Pula_pula() \n    while True:\n        line=input()\n        args=line.split(\" \")\n        print(f\"${' '.join(args)}\")\n        cmd= args[0]\n        \n        if cmd ==\"show\":\n            print(pula_pula)  \n        elif cmd==\"arrive\":\n            nome = args[1]\n            idade = int(args[2])\n            pula_pula.arrive(Kid(nome, idade))\n\n        elif cmd==\"leave\":\n            pula_pula.leave()\n\n        elif cmd==\"remove\":\n            pula_pula.remove(args[1])\n\n        elif cmd==\"enter\":\n            pula_pula.enter()\n\n        elif cmd==\"end\":\n            break\n            \n\nif __name__ == \"__main__\":\n    main()\n",
+            "lines": "106"
         }
     ]
 }
