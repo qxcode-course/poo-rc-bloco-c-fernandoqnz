@@ -38,22 +38,15 @@ class Market:
                 raise Exception("fail : fila vazia")
             elif None not in self.box:
                 raise Exception("fail: caixa ocupado")
-
-
             else:
                 for i in range(len(self.box)):
                     if self.box[i] is None:
                         self.box[i] = self.waiting.pop(0)
-                        
                         return
-            for i in range(len(self.box)):
-                if self.box[i] is not None:
-                    print("fail: caixa ocupado")
-                    return
-
-            
         except Exception as e:
             print(e)
+
+
 
     def finish(self, index:int):
         self.box[index]= None
