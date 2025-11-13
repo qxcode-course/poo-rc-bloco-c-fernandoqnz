@@ -1,3 +1,29 @@
 2025-11-13 13:57:20, MOVE, v:1, k:poo@budega, mode:PICK
 2025-11-13 13:57:21, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:96
 2025-11-13 13:58:18, MOVE, v:1, k:poo@budega, mode:BACK
+2025-11-13 14:00:06, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-13 14:00:07, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:96
+2025-11-13 14:00:47, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:96
+2025-11-13 14:02:17, EXEC, v:1, k:poo@budega, mode:FULL, rate:10, size:97
+2025-11-13 14:02:44, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:97
+2025-11-13 14:10:07, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:97
+2025-11-13 14:10:21, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:97
+2025-11-13 14:10:27, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:97
+2025-11-13 14:10:27, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:97
+2025-11-13 14:10:30, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:97
+2025-11-13 14:10:36, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:97
+2025-11-13 14:19:06, EXEC, v:1, k:poo@budega, mode:FULL, rate:40, size:99
+2025-11-13 14:19:33, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:99
+2025-11-13 14:21:08, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:100
+2025-11-13 14:21:21, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:99
+2025-11-13 14:23:01, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:104
+2025-11-13 14:23:24, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:105
+2025-11-13 14:23:46, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:104
+2025-11-13 14:24:38, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:105
+2025-11-13 14:24:50, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:105
+2025-11-13 14:25:59, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:107
+2025-11-13 14:28:25, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:106
+2025-11-13 14:28:56, EXEC, v:1, k:poo@budega, mode:FULL, rate:50, size:107
+2025-11-13 14:29:34, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:107
+2025-11-13 14:30:30, EXEC, v:1, k:poo@budega, mode:FULL, rate:30, size:107
+2025-11-13 14:30:31, EXEC, v:1, k:poo@budega, mode:FULL, rate:30

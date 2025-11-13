@@ -16,6 +16,8 @@ class Person:
                 raise Exception("fail: nome não pode ser vazio")
         except Exception as e:
             print(e)
+        self.__nome = nome
+
 
     def __str__(self) -> str:
         return f"{self.__nome}"
@@ -25,7 +27,7 @@ class Market:
         self.box: list[Person | None] = []
         for  _ in range(nbox):
             self.box.append(None)
-        self.waiting: list[Person]
+        self.waiting: list[Person] = []
     
     def arrive(self, person: Person):
         self.waiting.append(person)
@@ -34,12 +36,22 @@ class Market:
         try:
             if len(self.waiting) <=0:
                 raise Exception("fail : fila vazia")
-            elif len(self.waiting) is not 0:
-                raise  Exception("fail: sem clientes")
-            elif len(self.waiting) == len(self.box):
+            elif None not in self.box:
                 raise Exception("fail: caixa ocupado")
+
+
+            else:
+                for i in range(len(self.box)):
+                    if self.box[i] is None:
+                        self.box[i] = self.waiting.pop(0)
+                        
+                        return
+            for i in range(len(self.box)):
+                if self.box[i] is not None:
+                    print("fail: caixa ocupado")
+                    return
+
             
-            self.box.append(self.waiting.pop(0))
         except Exception as e:
             print(e)
 
@@ -49,7 +61,7 @@ class Market:
             if index < 0 or index>= len(self.box):
                 raise Exception("fail: caixa inexistente")
             elif self.box[index] is None:
-                raise Exception("fail: caixa vazio")
+                return
         except Exception as e:
             print(e)
 
@@ -61,11 +73,10 @@ class Market:
 
     
     def __str__(self):
-        boxes_str = "[" + ", ".join(
-            c.getNome() if c is not None else "-----" for c in self.box
-        ) + "]"
-        queue_str = "[" + ", ".join(p.getNome() for p in self.waiting) + "]"
-        return f"Caixas: {boxes_str}\nEspera: {queue_str}"
+        box =", ".join(["-----" if x is None else str(x) for x in self.box])
+        wait= ", ".join([str(x) for x in self.waiting])
+
+        return f"Caixas: [{box}]\nEspera: [{wait}]"
 
 def main():
     market=Market(0)

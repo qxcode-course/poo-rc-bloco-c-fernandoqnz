@@ -22,8 +22,118 @@
         },
         {
             "label": "2025-11-13_13-57-21",
-            "content": "class Person:\n    def __init__(self,nome:str) -> None:\n        try:\n            if nome==\"\":\n                raise Exception(\"fail: nome n\u00e3o pode ser vazio\")\n        except Exception as e:\n            print(e)\n        self.__nome=nome\n\n    def getNome(self):\n        return self.__nome\n    \n    def setNome(self, nome:str):\n        try:\n            if nome.strip()==\"\":\n                raise Exception(\"fail: nome n\u00e3o pode ser vazio\")\n        except Exception as e:\n            print(e)\n\n    def __str__(self) -> str:\n        return f\"{self.__nome}\"\n\nclass Market: \n    def __init__(self, nbox:int) -> None:\n        self.box: list[Person | None] = []\n        for  _ in range(nbox):\n            self.box.append(None)\n        self.waiting: list[Person]\n    \n    def arrive(self, person: Person):\n        self.waiting.append(person)\n\n    def call(self):\n        try:\n            if len(self.waiting) <=0:\n                raise Exception(\"fail : fila vazia\")\n            elif len(self.waiting) is not 0:\n                raise  Exception(\"fail: sem clientes\")\n            elif len(self.waiting) == len(self.box):\n                raise Exception(\"fail: caixa ocupado\")\n            \n            self.box.append(self.waiting.pop(0))\n        except Exception as e:\n            print(e)\n\n    def finish(self, index:int):\n        self.box[index]= None\n        try:\n            if index < 0 or index>= len(self.box):\n                raise Exception(\"fail: caixa inexistente\")\n            elif self.box[index] is None:\n                raise Exception(\"fail: caixa vazio\")\n        except Exception as e:\n            print(e)\n\n    def give_up(self, nome:str):       \n        for i, pessoa in enumerate (self.waiting):\n            if pessoa.getNome() == nome:\n                self.waiting.pop(i)\n                return\n\n    \n    def __str__(self):\n        boxes_str = \"[\" + \", \".join(\n            c.getNome() if c is not None else \"-----\" for c in self.box\n        ) + \"]\"\n        queue_str = \"[\" + \", \".join(p.getNome() for p in self.waiting) + \"]\"\n        return f\"Caixas: {boxes_str}\\nEspera: {queue_str}\"\n\ndef main():\n    market=Market(0)\n    while True:\n        line=input()\n        args=line.split(\" \")\n        print(f\"${' '.join(args)}\")\n        cmd= args[0]\n\n        if cmd == \"end\":\n            break\n        if cmd == \"show\":\n            print(market)\n        if cmd == \"init\":\n            market=Market(int(args[1]))\n        if cmd == \"arrive\":\n            nameclient= args[1]\n            market.arrive(Person(nameclient))\n        if cmd== \"call\":\n            market.call()\n        if cmd==\"finish\":\n            market.finish(int(args[1]))\n        if cmd==\"giveup\":\n            market.give_up(args[1])\n\nmain()\n\n    ",
+            "content": "@@ -743,21 +743,16 @@\n %5BPerson%5D\n- = %5B%5D\n %0A    %0A  \n",
             "lines": "96"
+        },
+        {
+            "label": "2025-11-13_14-00-07",
+            "content": "@@ -988,18 +988,22 @@\n aiting) \n-==\n+is not\n  0:%0A    \n",
+            "lines": "96"
+        },
+        {
+            "label": "2025-11-13_14-00-46",
+            "content": "@@ -2012,17 +2012,8 @@\n  in \n-reversed(\n self\n@@ -2025,17 +2025,15 @@\n ing)\n-)\n  + %22%5D%22%0A\n-%0A\n     \n",
+            "lines": "96"
+        },
+        {
+            "label": "2025-11-13_14-02-17",
+            "content": "@@ -1930,17 +1930,8 @@\n  in \n-reversed(\n self\n@@ -1944,17 +1944,16 @@\n        )\n-)\n  + %22%5D%22%0A \n@@ -2004,24 +2004,33 @@\n () for p in \n+reversed(\n self.waiting\n@@ -2030,16 +2030,17 @@\n waiting)\n+)\n  + %22%5D%22%0A%0A\n",
+            "lines": "97"
+        },
+        {
+            "label": "2025-11-13_14-02-44",
+            "content": "@@ -484,36 +484,8 @@\n (e)%0A\n-        self.__nome = nome%0A%0A\n %0A   \n@@ -1841,37 +1841,70 @@\n  box\n- =%22, %22.join(%5B%22-----%22\n+es_str = %22%5B%22 + %22, %22.join(%0A            c.getNome()\n  if \n-x\n+c\n  is \n+not \n None\n@@ -1913,72 +1913,113 @@\n lse \n-str(x)\n+%22-----%22\n  for \n-x\n+c\n  in \n-self.box%5D)%0A        wait= %22, %22.join(%5Bstr(x\n+reversed(self.box%0A        )) + %22%5D%22%0A        queue_str = %22%5B%22 + %22, %22.join(p.getNome(\n ) for \n-x\n+p\n  in \n@@ -2030,18 +2030,23 @@\n .waiting\n-%5D\n )\n+ + %22%5D%22\n %0A%0A      \n@@ -2060,23 +2060,27 @@\n n f%22\n-c\n+C\n aixas: \n-%5B\n %7Bbox\n+es_str\n %7D\n-%5D\n %5CnEs\n@@ -2089,16 +2089,19 @@\n ra: \n-%5B%7Bwait%7D%5D\n+%7Bqueue_str%7D\n %22%0A%0Ad\n",
+            "lines": "97"
+        },
+        {
+            "label": "2025-11-13_14-10-07",
+            "content": "@@ -2009,11 +2009,9 @@\n n f%22\n-  C\n+c\n aixa\n",
+            "lines": "97"
+        },
+        {
+            "label": "2025-11-13_14-10-21",
+            "content": "@@ -1,2665 +1,49 @@\n-class Person:%0A    def __init__(self,nome:str) -%3E None:%0A        try:%0A            if nome==%22%22:%0A                raise Exception(%22fail: nome n%C3%A3o pode ser vazio%22)%0A        except Exception as e:%0A            print(e)%0A        self.__nome=nome%0A%0A    def getNome(self):%0A        return self.__nome%0A    %0A    def setNome(self, nome:str):%0A        try:%0A            if nome.strip()==%22%22:%0A                raise Exception(%22fail: nome n%C3%A3o pode ser vazio%22)%0A        except Exception as e:%0A            print(e)%0A        self.__nome = nome%0A%0A%0A    def __str__(self) -%3E str:%0A        return f%22%7Bself.__nome%7D%22%0A%0Aclass Market: %0A    def __init__(self, nbox:int) -%3E None:%0A        self.box: list%5BPerson %7C None%5D = %5B%5D%0A        for  _ in range(nbox):%0A            self.box.append(None)%0A        self.waiting: list%5BPerson%5D = %5B%5D%0A    %0A    def arrive(self, person: Person):%0A        self.waiting.append(person)%0A%0A    def call(self):%0A        try:%0A            if len(self.waiting) %3C=0:%0A                raise Exception(%22fail : fila vazia%22)%0A            elif len(self.waiting) == 0:%0A                raise  Exception(%22fail: sem clientes%22)%0A            elif len(self.waiting) == len(self.box):%0A                raise Exception(%22fail: caixa ocupado%22)%0A            %0A            self.box.append(self.waiting.pop(0))%0A        except Exception as e:%0A            print(e)%0A%0A    def finish(self, index:int):%0A        self.box%5Bindex%5D= None%0A        try:%0A            if index %3C 0 or index%3E= len(self.box):%0A                raise Exception(%22fail: caixa inexistente%22)%0A            elif self.box%5Bindex%5D is None:%0A                raise Exception(%22fail: caixa vazio%22)%0A        except Exception as e:%0A            print(e)%0A%0A    def give_up(self, nome:str):       %0A        for i, pessoa in enumerate (self.waiting):%0A            if pessoa.getNome() == nome:%0A                self.waiting.pop(i)%0A                return%0A%0A    %0A    def __str__(self):%0A        box =%22, %22.join(%5B%22-----%22 if x is None else str(x) for x in self.box%5D)%0A        wait= %22, %22.join(%5Bstr(x) for x in self.waiting%5D)%0A%0A        return f%22 Caixas: %5B%7Bbox%7D%5D%5CnEspera: %5B%7Bwait%7D%5D%22%0A%0Adef main():%0A    market=Market(0)%0A    while True:%0A        line=input()%0A        args=line.split(%22 %22)%0A        print(f%22$%7B' '.join(args)%7D%22)%0A        cmd= args%5B0%5D%0A%0A        if cmd == %22end%22:%0A            break%0A        if cmd == %22show%22:%0A            print(market)%0A        if cmd == %22init%22:%0A            market=Market(int(args%5B1%5D))%0A        if cmd == %22arrive%22:%0A            nameclient= args%5B1%5D%0A            market.arrive(Person(nameclient))%0A        if cmd== %22call%22:%0A            market.call()%0A        if cmd==%22finish%22:%0A            market.finish(int(args%5B1%5D))%0A        if cmd==%22giveup%22:%0A            market.give_up(args%5B1%5D)%0A%0Amain()%0A%0A    \n+@@ -2005,16 +2005,17 @@%0A eturn f%2522%0A+ %0A  Caixas:%0A\n",
+            "lines": "4"
+        },
+        {
+            "label": "2025-11-13_14-10-30",
+            "content": "@@ -2005,16 +2005,17 @@\n eturn f%22\n+ \n Caixas: \n",
+            "lines": "97"
+        },
+        {
+            "label": "2025-11-13_14-10-36",
+            "content": "@@ -1002,28 +1002,30 @@\n lif \n-None not in self.box\n+len(self.waiting) == 0\n :%0A  \n@@ -1036,32 +1036,33 @@\n           raise \n+ \n Exception(%22fail:\n@@ -1066,25 +1066,23 @@\n il: \n-caixa ocupado\n+sem clientes\n %22)%0A\n-%0A\n     \n@@ -1093,23 +1093,34 @@\n     \n-for i in range(\n+elif len(self.waiting) == \n len(\n@@ -1128,17 +1128,16 @@\n elf.box)\n-)\n :%0A      \n@@ -1150,31 +1150,46 @@\n     \n-if self.box%5Bi%5D is None:\n+raise Exception(%22fail: caixa ocupado%22)\n %0A   \n@@ -1193,32 +1193,35 @@\n             \n+%0A  \n         \n self.box%5Bi%5D \n@@ -1208,24 +1208,26 @@\n         \n+  \n self.box\n %5Bi%5D = se\n@@ -1222,14 +1222,16 @@\n .box\n-%5Bi%5D = \n+.append(\n self\n@@ -1249,48 +1249,9 @@\n p(0)\n-%0A                    return%0A            \n+)\n %0A   \n",
+            "lines": "97"
+        },
+        {
+            "label": "2025-11-13_14-19-06",
+            "content": "@@ -1543,37 +1543,67 @@\n                r\n-eturn\n+aise Exception(%22fail: caixa vazio%22)\n %0A        except \n",
+            "lines": "99"
+        },
+        {
+            "label": "2025-11-13_14-19-33",
+            "content": "@@ -1163,57 +1163,8 @@\n ne:%0A\n-                    print(%22fail: caixa ocupado%22)%0A\n     \n",
+            "lines": "99"
+        },
+        {
+            "label": "2025-11-13_14-21-08",
+            "content": "@@ -1151,32 +1151,81 @@\n box%5Bi%5D is None:%0A\n+                    print(%22fail: caixa ocupado%22)%0A\n                 \n",
+            "lines": "100"
+        },
+        {
+            "label": "2025-11-13_14-21-21",
+            "content": "@@ -1244,177 +1244,8 @@\n urn%0A\n-            for i in range(len(self.box)):%0A                if self.box%5Bi%5D is not None:%0A                    self.box%5Bi%5D = self.waiting.pop(0)%0A                    return%0A%0A\n     \n",
+            "lines": "99"
+        },
+        {
+            "label": "2025-11-13_14-23-01",
+            "content": "@@ -1331,57 +1331,8 @@\n ne:%0A\n-                    print(%22fail: caixa ocupado%22)%0A\n     \n",
+            "lines": "104"
+        },
+        {
+            "label": "2025-11-13_14-23-24",
+            "content": "@@ -1323,24 +1323,73 @@\n s not None:%0A\n+                    print(%22fail: caixa ocupado%22)%0A\n             \n@@ -1460,24 +1460,8 @@\n turn\n- %22caixa ocupado%22\n %0A%0A  \n",
+            "lines": "105"
+        },
+        {
+            "label": "2025-11-13_14-23-46",
+            "content": "@@ -1351,35 +1351,40 @@\n     \n-print(%22fail: caixa ocupado%22\n+self.box%5Bi%5D = self.waiting.pop(0\n )%0A  \n@@ -1407,17 +1407,32 @@\n   return\n-%0A\n+ %22caixa ocupado%22\n %0A%0A      \n",
+            "lines": "104"
+        },
+        {
+            "label": "2025-11-13_14-24-38",
+            "content": "@@ -1145,36 +1145,32 @@\n  self.box%5Bi%5D is \n-not \n None:%0A          \n",
+            "lines": "105"
+        },
+        {
+            "label": "2025-11-13_14-24-50",
+            "content": "@@ -1080,76 +1080,8 @@\n %22)%0A%0A\n-%0A%0A            %0A        except Exception as e:%0A            print(e)%0A%0A\n     \n@@ -1149,24 +1149,28 @@\n f.box%5Bi%5D is \n+not \n None:%0A      \n@@ -1399,32 +1399,34 @@\n          return%0A\n+%0A%0A\n                 \n@@ -1421,20 +1421,68 @@\n         \n+%0A    \n     \n+except Exception as e:%0A            print(e)\n %0A%0A    de\n",
+            "lines": "105"
+        },
+        {
+            "label": "2025-11-13_14-25-59",
+            "content": "@@ -1077,16 +1077,17 @@\n ado%22)%0A%0A%0A\n+%0A\n         \n@@ -1094,20 +1094,62 @@\n     \n-else:\n %0A      \n+  except Exception as e:%0A            print(e)%0A%0A\n     \n@@ -1146,32 +1146,34 @@\n t(e)%0A%0A          \n+  \n for i in range(l\n@@ -1195,36 +1195,32 @@\n                 \n-    \n if self.box%5Bi%5D i\n@@ -1239,36 +1239,32 @@\n                 \n- \n-   \n self.box%5Bi%5D = se\n@@ -1281,20 +1281,16 @@\n .pop(0)%0A\n-    \n         \n@@ -1467,25 +1467,24 @@\n      return%0A\n-%0A\n             \n@@ -1487,60 +1487,12 @@\n     \n-%0A     \n    \n-except Exception as e:%0A            print(e)\n+ \n %0A%0A  \n",
+            "lines": "107"
+        },
+        {
+            "label": "2025-11-13_14-28-25",
+            "content": "@@ -1248,33 +1248,8 @@\n (0)%0A\n-                        %0A\n     \n",
+            "lines": "106"
+        },
+        {
+            "label": "2025-11-13_14-28-56",
+            "content": "@@ -1180,20 +1180,16 @@\n x%5Bi%5D is \n-not \n None:%0A  \n@@ -1214,36 +1214,66 @@\n     \n-print(%22fail: caixa ocupado%22)\n+self.box%5Bi%5D = self.waiting.pop(0)%0A                        \n %0A   \n@@ -1312,21 +1312,16 @@\n         \n-    #\n for i in\n@@ -1356,21 +1356,16 @@\n         \n-    #\n    if se\n@@ -1369,32 +1369,36 @@\n  self.box%5Bi%5D is \n+not \n None:%0A          \n@@ -1406,72 +1406,8 @@\n     \n-   #      self.box%5Bi%5D = self.waiting.pop(0)%0A                   #\n     \n@@ -1456,13 +1456,8 @@\n     \n-    #\n     \n",
+            "lines": "107"
+        },
+        {
+            "label": "2025-11-13_14-29-34",
+            "content": "@@ -1020,16 +1020,91 @@\n lf.box:%0A\n+                raise Exception(%22fail: caixa ocupado%22)%0A%0A%0A            else:%0A\n         \n@@ -1294,83 +1294,9 @@\n     \n-raise Exception(%22fail: caixa ocupado%22)%0A%0A%0A            else:%0A                \n+#\n for \n@@ -1331,34 +1331,36 @@\n                 \n+#\n   \n+ \n if self.box%5Bi%5D i\n@@ -1377,32 +1377,33 @@\n                 \n+#\n       self.box%5Bi\n@@ -1437,32 +1437,33 @@\n                 \n+#\n      print(%22fail\n@@ -1492,32 +1492,33 @@\n                 \n+#\n     return%0A%0A    \n",
+            "lines": "107"
+        },
+        {
+            "label": "2025-11-13_14-30-30",
+            "content": "class Person:\n    def __init__(self,nome:str) -> None:\n        try:\n            if nome==\"\":\n                raise Exception(\"fail: nome n\u00e3o pode ser vazio\")\n        except Exception as e:\n            print(e)\n        self.__nome=nome\n\n    def getNome(self):\n        return self.__nome\n    \n    def setNome(self, nome:str):\n        try:\n            if nome.strip()==\"\":\n                raise Exception(\"fail: nome n\u00e3o pode ser vazio\")\n        except Exception as e:\n            print(e)\n        self.__nome = nome\n\n\n    def __str__(self) -> str:\n        return f\"{self.__nome}\"\n\nclass Market: \n    def __init__(self, nbox:int) -> None:\n        self.box: list[Person | None] = []\n        for  _ in range(nbox):\n            self.box.append(None)\n        self.waiting: list[Person] = []\n    \n    def arrive(self, person: Person):\n        self.waiting.append(person)\n\n    def call(self):\n        try:\n            if len(self.waiting) <=0:\n                raise Exception(\"fail : fila vazia\")\n            elif None not in self.box:\n                for i in range(len(self.box)):\n                    if self.box[i] is not None:\n                        print(\"fail: caixa ocupado\")\n                        return\n                raise Exception(\"fail: caixa ocupado\")\n\n\n            else:\n                for i in range(len(self.box)):\n                   if self.box[i] is None:\n                        self.box[i] = self.waiting.pop(0)\n                        print(\"fail: caixa ocupado\")\n                        return\n\n            \n        except Exception as e:\n            print(e)\n\n    def finish(self, index:int):\n        self.box[index]= None\n        try:\n            if index < 0 or index>= len(self.box):\n                raise Exception(\"fail: caixa inexistente\")\n            elif self.box[index] is None:\n                return\n        except Exception as e:\n            print(e)\n\n    def give_up(self, nome:str):       \n        for i, pessoa in enumerate (self.waiting):\n            if pessoa.getNome() == nome:\n                self.waiting.pop(i)\n                return\n\n    \n    def __str__(self):\n        box =\", \".join([\"-----\" if x is None else str(x) for x in self.box])\n        wait= \", \".join([str(x) for x in self.waiting])\n\n        return f\"Caixas: [{box}]\\nEspera: [{wait}]\"\n\ndef main():\n    market=Market(0)\n    while True:\n        line=input()\n        args=line.split(\" \")\n        print(f\"${' '.join(args)}\")\n        cmd= args[0]\n\n        if cmd == \"end\":\n            break\n        if cmd == \"show\":\n            print(market)\n        if cmd == \"init\":\n            market=Market(int(args[1]))\n        if cmd == \"arrive\":\n            nameclient= args[1]\n            market.arrive(Person(nameclient))\n        if cmd== \"call\":\n            market.call()\n        if cmd==\"finish\":\n            market.finish(int(args[1]))\n        if cmd==\"giveup\":\n            market.give_up(args[1])\n\nmain()\n\n    ",
+            "lines": "107"
         }
     ]
 }
