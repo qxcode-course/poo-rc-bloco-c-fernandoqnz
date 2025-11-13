@@ -1,0 +1,3 @@
+2025-11-13 13:57:20, MOVE, v:1, k:poo@budega, mode:PICK
+2025-11-13 13:57:21, EXEC, v:1, k:poo@budega, mode:FULL, rate:0, size:96
+2025-11-13 13:58:18, MOVE, v:1, k:poo@budega, mode:BACK
