@@ -18,3 +18,6 @@
 2025-11-15 01:38:50, EXEC, v:1, k:poo@budega, mode:FULL, rate:90, size:105
 2025-11-15 01:39:05, EXEC, v:1, k:poo@budega, mode:FULL, rate:100, size:105
 2025-11-15 01:39:18, MOVE, v:1, k:poo@budega, mode:BACK
+2025-11-15 01:41:50, MOVE, v:1, k:poo@lapiseira, mode:DOWN
+2025-11-15 19:29:46, MOVE, v:1, k:poo@cinema, mode:PICK
+2025-11-15 20:52:18, MOVE, v:1, k:poo@cinema, mode:BACK
