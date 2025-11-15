@@ -32,31 +32,36 @@ class Market:
     def arrive(self, person: Person):
         self.waiting.append(person)
 
-    def call(self):
-        try:
-            if len(self.waiting) <=0:
-                raise Exception("fail : fila vazia")
-            elif None not in self.box:
-                raise Exception("fail: caixa ocupado")
-            else:
-                for i in range(len(self.box)):
-                    if self.box[i] is None:
-                        self.box[i] = self.waiting.pop(0)
-                        return
-        except Exception as e:
-            print(e)
+
+    def call(self, index:int):
+        
+        if len(self.waiting) == 0:
+            print("fail: sem clientes")
+            return
+
+        if index < 0 or index >= len(self.box):
+            print("fail: caixa inexistente")
+            return
+
+        if self.box[index] is not None:
+            print("fail: caixa ocupado")
+            return
+
+        self.box[index] = self.waiting.pop(0)
+
 
 
 
     def finish(self, index:int):
-        self.box[index]= None
-        try:
-            if index < 0 or index>= len(self.box):
-                raise Exception("fail: caixa inexistente")
-            elif self.box[index] is None:
-                return
-        except Exception as e:
-            print(e)
+        if index < 0 or index >= len(self.box):
+            print("fail: caixa inexistente")
+            return
+
+        if self.box[index] is None:
+            print("fail: caixa vazio")
+            return
+
+        self.box[index] = None
 
     def give_up(self, nome:str):       
         for i, pessoa in enumerate (self.waiting):
@@ -88,8 +93,8 @@ def main():
         if cmd == "arrive":
             nameclient= args[1]
             market.arrive(Person(nameclient))
-        if cmd== "call":
-            market.call()
+        if cmd == "call":
+             market.call(int(args[1]))
         if cmd=="finish":
             market.finish(int(args[1]))
         if cmd=="giveup":
