@@ -41,7 +41,7 @@ class Theather:
             return False
         
         if index < 0 or index >= len(self.seats):
-            print("fail: assento inexistente")
+           # print("fail: assento inexistente")
             return False
 
         return True
@@ -53,20 +53,24 @@ class Theather:
         return -1
     
     def reserve(self, id:str, nmr:int, index:int):
+        
+        
         if not self.verifyIndex(index):
             print("fail: cadeira nao existe")
+            return False
+        
+        if self.seats[index] is not None:
+            print("fail: cadeira ja esta ocupada")
             return
         
         if self.search(id) != -1:
             print("fail: cliente ja esta no cinema")
-            return
-        
-        if self.seats[index] is not None:
-            print("fail: cliente ja esta no cinema")
+            return False
 
             
         client = Client(id, nmr)
         self.seats[index]=client
+
 
     def cancel(self, id:str):
         index = self.search(id)
@@ -103,11 +107,11 @@ def main():
         elif cmd=="reserve":
             id=args[1]
             nmr= int(args[2])
-            i= int(args[3])
-            tt.reserve(Client(id, nmr,i))
+            index= int(args[3])
+            tt.reserve(id, nmr,index)
 
         elif cmd =="cancel":
-            tt.cancel
+            tt.cancel(args[1])
 
 main()
 

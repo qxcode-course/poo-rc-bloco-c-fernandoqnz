@@ -132,8 +132,78 @@
         },
         {
             "label": "2025-11-18_01-05-49",
-            "content": "class Client:\n    def __init__(self, id: str, nmr: int) -> None:\n        if id == \"\":\n            raise Exception(\"fail: id invalido\")\n\n        if nmr <= 0:\n            raise Exception(\"fail: numero invalido\")\n\n        self.__id = id\n        self.__nmr = nmr\n        \n    def getID(self):\n        return self.__id\n    \n    def getNmr(self):\n        return self.__nmr\n\n    def setID(self, id: str):\n        if id.strip() == \"\":\n            raise Exception(\"fail: id invalido\")\n        self.__id = id\n\n    def setNmr(self, nmr: int):\n        if nmr <= 0:\n            raise Exception(\"fail: numero invalido\")\n        self.__nmr = nmr\n\n    def __str__(self) -> str:\n        return f\"{self.__id}:{self.__nmr}\"\n\n    \nclass Theather:\n    def __init__(self, maxcapacity:int) -> None:\n        self.seats: list[Client | None] = []\n        for  _ in range(maxcapacity):\n            self.seats.append(None)\n\n    def verifyIndex(self, index: int):\n        if len(self.seats) == 0:\n            print(\"fail: sem assentos\")\n            return False\n        \n        if index < 0 or index >= len(self.seats):\n            print(\"fail: assento inexistente\")\n            return False\n\n        return True\n    \n    def search(self, id:str) ->int:\n        for i, client in enumerate(self.seats):\n            if client is not None and client.getID()== id:\n                return i\n        return -1\n    \n    def reserve(self, id:str, nmr:int, index:int):\n        if not self.verifyIndex(index):\n            print(\"fail: cadeira nao existe\")\n            return\n        \n        if self.search(id) != -1:\n            print(\"fail: cliente ja esta no cinema\")\n            return\n        \n        if self.seats[index] is not None:\n            print(\"fail: cliente ja esta no cinema\")\n\n            \n        client = Client(id, nmr)\n        self.seats[index]=client\n\n    def cancel(self, id:str):\n        index = self.search(id)\n        if index == -1:\n            print(\"fail: cliente nao esta no cinema\")\n            return\n        self.seats[index]= None\n\n    def getSeats(self):\n        return self.seats\n    \n    def __str__(self) -> str:\n        content = \" \".join(str(client) if client is not None else \"-\"\n                           for client in self.seats)\n        return f\"[{content}]\"\n    \ndef main():\n    tt= Theather(0)\n    while True:\n        line=input()\n        args= line.split(\" \")\n        print(f\"${' '.join(args)}\")\n        cmd = args[0]\n\n        if cmd ==\"show\":\n            print(tt)\n        \n        elif cmd ==\"end\":\n            break\n\n        elif cmd ==\"init\":\n            tt=Theather(int(args[1]))\n            \n        elif cmd==\"reserve\":\n            id=args[1]\n            nmr= int(args[2])\n            i= int(args[3])\n            tt.reserve(Client(id, nmr,i))\n\n        elif cmd ==\"cancel\":\n            tt.cancel\n\nmain()\n\n\n\n        \n",
+            "content": "@@ -2697,20 +2697,16 @@\n        i\n-ndex\n = int(ar\n@@ -2751,20 +2751,16 @@\n d, nmr,i\n-ndex\n ))%0A%0A    \n",
             "lines": "116"
+        },
+        {
+            "label": "2025-11-18_13-12-24",
+            "content": "@@ -2739,16 +2739,23 @@\n reserve(\n+Client(\n id, nmr,\n@@ -2760,16 +2760,17 @@\n r,index)\n+)\n %0A%0A      \n",
+            "lines": "116"
+        },
+        {
+            "label": "2025-11-18_13-12-35",
+            "content": "@@ -1938,30 +1938,30 @@\n int(%22fail: c\n-adeira\n+liente\n  nao esta no\n",
+            "lines": "116"
+        },
+        {
+            "label": "2025-11-18_13-12-48",
+            "content": "@@ -1722,22 +1722,22 @@\n %22fail: c\n-adeira\n+liente\n  ja esta\n@@ -1741,14 +1741,16 @@\n sta \n-ocupad\n+no cinem\n a%22)%0A\n@@ -1942,22 +1942,22 @@\n %22fail: c\n-liente\n+adeira\n  nao est\n",
+            "lines": "116"
+        },
+        {
+            "label": "2025-11-18_13-13-20",
+            "content": "@@ -1658,123 +1658,8 @@\n    %0A\n-        if self.search(id) == -1:%0A            print(%22fail: cliente ja esta no cinema%22)%0A            return%0A        %0A\n     \n@@ -1828,17 +1828,16 @@\n client%0A%0A\n-%0A\n     def \n",
+            "lines": "116"
+        },
+        {
+            "label": "2025-11-18_13-20-02",
+            "content": "@@ -1646,32 +1646,138 @@\n return%0A        %0A\n+        if self.search(id) == -1:%0A            print(%22fail: cliente ja esta no cinema%22)%0A            return%0A\n         %0A       \n",
+            "lines": "121"
+        },
+        {
+            "label": "2025-11-18_13-20-46",
+            "content": "@@ -1521,39 +1521,33 @@\n           return\n- False\n %0A\n+\n         %0A       \n@@ -1636,38 +1636,32 @@\n           return\n- False\n %0A        %0A      \n@@ -1760,32 +1760,8 @@\n a%22)%0A\n-            return False\n %0A   \n",
+            "lines": "118"
+        },
+        {
+            "label": "2025-11-18_13-21-09",
+            "content": "@@ -1768,16 +1768,40 @@\n upada%22)%0A\n+            return False\n %0A       \n",
+            "lines": "118"
+        },
+        {
+            "label": "2025-11-18_13-21-47",
+            "content": "@@ -1767,35 +1767,16 @@\n cupada%22)\n-%0A            return\n %0A%0A      \n",
+            "lines": "118"
+        },
+        {
+            "label": "2025-11-18_13-22-24",
+            "content": "@@ -1490,35 +1490,34 @@\n (%22fail: \n-assento in\n+cadeira nao \n existe\n-nte\n %22)%0A     \n",
+            "lines": "119"
+        },
+        {
+            "label": "2025-11-18_13-22-52",
+            "content": "@@ -1440,37 +1440,35 @@\n  if \n+not \n self.\n-seats%5Bindex%5D is not None\n+verifyIndex(index)\n :%0A  \n@@ -1494,31 +1494,27 @@\n il: \n-cadeira ja esta ocupada\n+assento inexistente\n %22)%0A \n@@ -1530,25 +1530,22 @@\n   return\n-%0A        \n+ False\n %0A       \n@@ -1561,35 +1561,29 @@\n  if \n-not \n self.\n-verifyIndex(index)\n+search(id) != -1\n :%0A  \n@@ -1610,25 +1610,32 @@\n l: c\n-adeir\n+liente ja est\n a n\n-a\n o \n-existe\n+cinema\n %22)%0A \n@@ -1659,32 +1659,41 @@\n  False%0A        %0A\n+        %0A\n         if self.\n@@ -1691,37 +1691,45 @@\n  if self.sea\n-rch(id) != -1\n+ts%5Bindex%5D is not None\n :%0A          \n@@ -1736,38 +1736,38 @@\n   print(%22fail: c\n-liente\n+adeira\n  ja esta no cine\n@@ -1755,32 +1755,30 @@\n ira ja esta \n-no cinem\n+ocupad\n a%22)%0A        \n@@ -1779,38 +1779,32 @@\n           return\n- False\n %0A%0A            %0A \n",
+            "lines": "119"
+        },
+        {
+            "label": "2025-11-18_13-23-25",
+            "content": "@@ -1421,24 +1421,136 @@\n index:int):%0A\n+        if self.seats%5Bindex%5D is not None:%0A            print(%22fail: cadeira ja esta ocupada%22)%0A            return%0A\n         %0A   \n@@ -1679,129 +1679,8 @@\n    %0A\n-        if self.seats%5Bindex%5D is not None:%0A            print(%22fail: cadeira ja esta ocupada%22)%0A            return%0A        %0A\n     \n",
+            "lines": "119"
+        },
+        {
+            "label": "2025-11-18_13-23-48",
+            "content": "@@ -1100,9 +1100,8 @@\n     \n-#\n  pri\n",
+            "lines": "120"
+        },
+        {
+            "label": "2025-11-18_13-24-48",
+            "content": "@@ -2854,25 +2854,16 @@\n t.cancel\n-(args%5B1%5D)\n %0A%0Amain()\n",
+            "lines": "120"
+        },
+        {
+            "label": "2025-11-18_13-27-33",
+            "content": "class Client:\n    def __init__(self, id: str, nmr: int) -> None:\n        if id == \"\":\n            raise Exception(\"fail: id invalido\")\n\n        if nmr <= 0:\n            raise Exception(\"fail: numero invalido\")\n\n        self.__id = id\n        self.__nmr = nmr\n        \n    def getID(self):\n        return self.__id\n    \n    def getNmr(self):\n        return self.__nmr\n\n    def setID(self, id: str):\n        if id.strip() == \"\":\n            raise Exception(\"fail: id invalido\")\n        self.__id = id\n\n    def setNmr(self, nmr: int):\n        if nmr <= 0:\n            raise Exception(\"fail: numero invalido\")\n        self.__nmr = nmr\n\n    def __str__(self) -> str:\n        return f\"{self.__id}:{self.__nmr}\"\n\n    \nclass Theather:\n    def __init__(self, maxcapacity:int) -> None:\n        self.seats: list[Client | None] = []\n        for  _ in range(maxcapacity):\n            self.seats.append(None)\n\n    def verifyIndex(self, index: int):\n        if len(self.seats) == 0:\n            print(\"fail: sem assentos\")\n            return False\n        \n        if index < 0 or index >= len(self.seats):\n           # print(\"fail: assento inexistente\")\n            return False\n\n        return True\n    \n    def search(self, id:str) ->int:\n        for i, client in enumerate(self.seats):\n            if client is not None and client.getID()== id:\n                return i\n        return -1\n    \n    def reserve(self, id:str, nmr:int, index:int):\n        \n        \n        if not self.verifyIndex(index):\n            print(\"fail: cadeira nao existe\")\n            return False\n        \n        if self.seats[index] is not None:\n            print(\"fail: cadeira ja esta ocupada\")\n            return\n        \n        if self.search(id) != -1:\n            print(\"fail: cliente ja esta no cinema\")\n            return False\n\n            \n        client = Client(id, nmr)\n        self.seats[index]=client\n\n\n    def cancel(self, id:str):\n        index = self.search(id)\n        if index == -1:\n            print(\"fail: cliente nao esta no cinema\")\n            return\n        self.seats[index]= None\n\n    def getSeats(self):\n        return self.seats\n    \n    def __str__(self) -> str:\n        content = \" \".join(str(client) if client is not None else \"-\"\n                           for client in self.seats)\n        return f\"[{content}]\"\n    \ndef main():\n    tt= Theather(0)\n    while True:\n        line=input()\n        args= line.split(\" \")\n        print(f\"${' '.join(args)}\")\n        cmd = args[0]\n\n        if cmd ==\"show\":\n            print(tt)\n        \n        elif cmd ==\"end\":\n            break\n\n        elif cmd ==\"init\":\n            tt=Theather(int(args[1]))\n            \n        elif cmd==\"reserve\":\n            id=args[1]\n            nmr= int(args[2])\n            index= int(args[3])\n            tt.reserve(id, nmr,index)\n\n        elif cmd ==\"cancel\":\n            tt.cancel(args[1])\n\nmain()\n\n\n\n        \n",
+            "lines": "120"
         }
     ]
 }
