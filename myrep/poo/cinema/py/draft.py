@@ -54,12 +54,17 @@ class Theather:
     
     def reserve(self, id:str, nmr:int, index:int):
         if not self.verifyIndex(index):
+            print("fail: cadeira nao existe")
             return
         
         if self.search(id) != -1:
             print("fail: cliente ja esta no cinema")
             return
         
+        if self.seats[index] is not None:
+            print("fail: cliente ja esta no cinema")
+
+            
         client = Client(id, nmr)
         self.seats[index]=client
 
@@ -68,7 +73,44 @@ class Theather:
         if index == -1:
             print("fail: cliente nao esta no cinema")
             return
-        self.seats[index]=None
+        self.seats[index]= None
 
     def getSeats(self):
+        return self.seats
+    
+    def __str__(self) -> str:
+        content = " ".join(str(client) if client is not None else "-"
+                           for client in self.seats)
+        return f"[{content}]"
+    
+def main():
+    tt= Theather(0)
+    while True:
+        line=input()
+        args= line.split(" ")
+        print(f"${' '.join(args)}")
+        cmd = args[0]
 
+        if cmd =="show":
+            print(tt)
+        
+        elif cmd =="end":
+            break
+
+        elif cmd =="init":
+            tt=Theather(int(args[1]))
+            
+        elif cmd=="reserve":
+            id=args[1]
+            nmr= int(args[2])
+            i= int(args[3])
+            tt.reserve(Client(id, nmr,i))
+
+        elif cmd =="cancel":
+            tt.cancel
+
+main()
+
+
+
+        
