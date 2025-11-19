@@ -1,0 +1,134 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-19_11-09-16",
+            "content": "@@ -178,219 +178,12 @@\n ize%0A\n-%0A    def getThickness(self) -%3Efloat:%0A        return self.__thickness%0A    %0A    def getHardness(self) -%3E str:%0A        return self.__hardness%0A%0A    def getSize(self) -%3E int:%0A        return self.__size%0A    %0A    set%0A    %0A\n+        \n",
+            "lines": "6"
+        },
+        {
+            "label": "2025-11-19_11-11-54",
+            "content": "@@ -384,655 +384,11 @@\n     \n-def setSize(self, size: int):%0A        self.__size =size%0A%0A    def usageFolha(self ) -%3E int:%0A        if self.__hardness == %22HB%22:%0A            return 1%0A        if self.__hardness ==%222B%22:%0A            return 2%0A        if self.__hardness == %224B%22:%0A            return 4%0A        if self.__hardness == %226B%22:%0A            return 6%0A        return 0%0A    %0A    def __str__(self) -%3E str:%0A        return f%22%5B%7Bself.__thickness%7D:%7Bself.__hardness%7D:%7Bself.__size%7D%5D%22%0A%0Aclass Pencil:%0A    def __init__(self, thickness:float) -%3E None:%0A        self.__thickness = thickness%0A        self.__type= None%0A        self.__drum= %5B%5D%0A%0A    def insert(self, lead):%0A        if lead%0A%0A        %0A\n+set\n %0A   \n",
+            "lines": "17"
+        },
+        {
+            "label": "2025-11-19_11-24-36",
+            "content": "@@ -699,16 +699,334 @@\n turn 6%0A \n+       return 0%0A    %0A    def __str__(self) -%3E str:%0A        return f%22%5B%7Bself.__thickness%7D:%7Bself.__hardness%7D:%7Bself.__size%7D%5D%22%0A%0Aclass Pencil:%0A    def __init__(self, thickness:float) -%3E None:%0A        self.__thickness = thickness%0A        self.__type= None%0A        self.__drum= %5B%5D%0A%0A    def insert(self, lead):%0A        if lead%0A\n %0A       \n",
+            "lines": "44"
+        },
+        {
+            "label": "2025-11-19_11-25-05",
+            "content": "@@ -703,326 +703,8 @@\n  6%0A \n-       return 0%0A    %0A    def __str__(self) -%3E str:%0A        return f%22%5B%7Bself.__thickness%7D:%7Bself.__hardness%7D:%7Bself.__size%7D%5D%22%0A%0Aclass Pencil:%0A    def __init__(self, thickness:float) -%3E None:%0A        self.__thickness = thickness%0A        self.__type= None%0A        self.__drum= %5B%5D%0A%0A    def insert(self, lead):%0A        if lead%0A\n %0A   \n",
+            "lines": "31"
+        },
+        {
+            "label": "2025-11-19_11-26-15",
+            "content": "@@ -1016,17 +1016,16 @@\n  if lead\n- \n %0A%0A      \n",
+            "lines": "44"
+        },
+        {
+            "label": "2025-11-19_11-26-24",
+            "content": "@@ -454,13 +454,13 @@\n sage\n-Sheet\n+Folha\n (sel\n@@ -998,390 +998,31 @@\n lf, \n-gft):%0A        if gft.getThickness() != self.__thickness:%0A            print(%22fail: calibre incompativel%22)%0A            return False%0A        self.__drum.append(gft)%0A        return True%0A%0A    def remove(self):%0A        if self.__type is not None:%0A            gft_removed = self.__type%0A            self.__type = None%0A            return gft_removed%0A        return None%0A%0A    %0A%0A            %0A%0A\n+lead):%0A        if lead \n %0A%0A  \n",
+            "lines": "44"
+        },
+        {
+            "label": "2025-11-19_11-37-03",
+            "content": "@@ -973,16 +973,397 @@\n um= %5B%5D%0A%0A\n+    def insert(self, gft):%0A        if gft.getThickness() != self.__thickness:%0A            print(%22fail: calibre incompativel%22)%0A            return False%0A        self.__drum.append(gft)%0A        return True%0A%0A    def remove(self):%0A        if self.__type is not None:%0A            gft_removed = self.__type%0A            self.__type = None%0A            return gft_removed%0A        return None\n %0A%0A    %0A%0A\n",
+            "lines": "61"
+        },
+        {
+            "label": "2025-11-19_11-37-11",
+            "content": "@@ -971,812 +971,14 @@\n drum\n- \n = %5B%5D%0A%0A\n-    def insert(self, gft):%0A        if gft.getThickness() != self.__thickness:%0A            print(%22fail: calibre incompativel%22)%0A            return False%0A        self.__drum.append(gft)%0A        return True%0A%0A    def remove(self):%0A        if self.__type is not None:%0A            gft_removed = self.__type%0A            self.__type = None%0A            return gft_removed%0A        return None%0A    %0A    def pull(self):%0A        if self.__type is not None:%0A            print(%22fail: ja existe grafite no bico%22)%0A            return False%0A        %0A        if not self.__drum:%0A            print(%22fail: tambor esta vazio%22)%0A            return False%0A        %0A        pull_gft = self.__drum%5B0%5D%0A        self.__type  =pull_gft%0A        self.__drum = self.__drum%5B1%5D%0A        return True%0A    %0A    def writePage(self):%0A        \n %0A%0A  \n",
+            "lines": "49"
+        },
+        {
+            "label": "2025-11-19_15-22-32",
+            "content": "@@ -937,20 +937,20 @@\n  self.__\n-bico\n+type\n = None%0A \n@@ -1210,36 +1210,36 @@\n       if self.__\n-bico\n+type\n  is not None:%0A  \n@@ -1269,20 +1269,20 @@\n  self.__\n-bico\n+type\n %0A       \n@@ -1293,20 +1293,20 @@\n  self.__\n-bico\n+type\n  = None%0A\n@@ -1395,28 +1395,28 @@\n   if self.__\n-bico\n+type\n  is not None\n@@ -1660,20 +1660,20 @@\n  self.__\n-bico\n+type\n   =pull_\n@@ -1759,32 +1759,32 @@\n Page(self):%0A\n+\n         \n if self.__bi\n@@ -1775,85 +1775,8 @@\n     \n-if self.__bico is None:%0A            print(%22fail: grafite nao existe no bico%22)\n %0A%0A  \n",
+            "lines": "78"
+        },
+        {
+            "label": "2025-11-19_15-26-48",
+            "content": "@@ -1852,223 +1852,8 @@\n co%22)\n-%0A            return %0A        %0A        current_size = self.__tip.getSize()%0A        if current_size %3C= 10:%0A            print(%22fail: tamanho insuficiente%22)%0A            self.remove()%0A            return%0A        %0A        \n %0A%0A  \n",
+            "lines": "79"
+        },
+        {
+            "label": "2025-11-19_15-28-19",
+            "content": "@@ -1369,23 +1369,706 @@\n     \n-%0A%0Adef main():%0A%0A\n+def pull(self):%0A        if self.__bico is not None:%0A            print(%22fail: ja existe grafite no bico%22)%0A            return False%0A        %0A        if not self.__drum:%0A            print(%22fail: tambor esta vazio%22)%0A            return False%0A        %0A        pull_gft = self.__drum%5B0%5D%0A        self.__bico  =pull_gft%0A        self.__drum = self.__drum%5B1%5D%0A        return True%0A    %0A    def writePage(self):%0A        if self.__bico is None:%0A            print(%22fail: grafite nao existe no bico%22)%0A            return %0A        %0A        current_size = self.__tip.getSize()%0A        if current_size %3C= 10:%0A            print(%22fail: tamanho insuficiente%22)%0A            self.remove()%0A            return%0A        %0A        \n %0A%0A  \n",
+            "lines": "88"
+        },
+        {
+            "label": "2025-11-19_15-30-00",
+            "content": "@@ -1369,1502 +1369,23 @@\n     \n-def pull(self):%0A        if self.__bico is not None:%0A            print(%22fail: ja existe grafite no bico%22)%0A            return False%0A        %0A        if not self.__drum:%0A            print(%22fail: tambor esta vazio%22)%0A            return False%0A        %0A        pull_gft = self.__drum%5B0%5D%0A        self.__bico  =pull_gft%0A        self.__drum = self.__drum%5B1%5D%0A        return True%0A    %0A    def writePage(self):%0A        if self.__bico is None:%0A            print(%22fail: grafite nao existe no bico%22)%0A            return %0A        %0A        current_size = self.__tip.getSize()%0A        if current_size %3C= 10:%0A            print(%22fail: tamanho insuficiente%22)%0A            self.remove()%0A            return%0A        %0A        wear = self.__tip.usagePerSheet()%0A        new_size = current_size - wear%0A%0A        if new_size %3C 10:%0A            print(%22fail: folha incompleta%22)%0A            self.__tip.setSize(10)%0A            self.remove%0A        else:%0A            self.__tip.setSize(new_size)%0A%0Adef main():%0A    pencil = None%0A    while True:%0A        line=input()%0A        print(f%22$%7Bline%7D%22)%0A        args=line.split()%0A%0A        if len(args)== 0:%0A            continue%0A%0A        cmd = args%5B0%5D%0A%0A        if cmd == %22end%22: %0A            break%0A        elif cmd ==%22init%22:%0A            pencil=Pencil(float(args%5B1%5D))%0A        elif cmd == %22insert%22:%0A            thickness = float(args%5B1%5D)%0A            hardness = args%5B2%5D%0A            size = int(args%5B3%5D)%0A            lead = Lead(thickness, hardness, size)%0A            pencil.insert(lead)%0A%0A        elif cmd \n+%0A%0Adef main():%0A%0A\n %0A%0A  \n",
+            "lines": "67"
+        },
+        {
+            "label": "2025-11-19_15-37-12",
+            "content": "@@ -1667,17 +1667,16 @@\n _bico  =\n- \n pull_gft\n@@ -2077,20 +2077,19 @@\n  self.__\n-bico\n+tip\n .usagePe\n@@ -2218,36 +2218,35 @@\n          self.__\n-bico\n+tip\n .setSize(10)%0A   \n@@ -2299,20 +2299,19 @@\n  self.__\n-bico\n+tip\n .setSize\n@@ -2326,285 +2326,37 @@\n e)%0A%0A\n-    def show(self):%0A        tip_str = str(self.__bico) if self.__bico else %22%5B%5D%22%0A        barrel_str = %22%22.join(str(lead) for lead in self.__drum)%0A        print(%0A            f%22calibre: %7Bself.__thickness%7D, bico: %7Btip_str%7D, tambor: %3C%7Bbarrel_str%7D%3E%22)%0A%0Adef main():%0A    pencil=Pencil(0)\n+def main():%0A    pencil = None\n %0A   \n@@ -2863,282 +2863,8 @@\n cmd \n-==%22pull%22:%0A            if pencil:%0A                pencil.pull()%0A%0A        elif cmd == %22remove%22:%0A            pencil.remove()%0A%0A        elif cmd == %22write%22:%0A            pencil.writePage()%0A%0A        elif cmd == %22show%22:%0A            pencil.show%0A%0Aif __name__ == %22__main__%22:%0A    main()\n %0A%0A  \n",
+            "lines": "121"
+        },
+        {
+            "label": "2025-11-19_15-43-04",
+            "content": "@@ -2773,17 +2773,16 @@\n         \n-#\n if cmd =\n@@ -2804,9 +2804,8 @@\n     \n-#\n    b\n@@ -2809,32 +2809,34 @@\n   break%0A        \n+el\n if cmd ==%22init%22:\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-15-46",
+            "content": "@@ -2769,24 +2769,25 @@\n 0%5D%0A%0A        \n+#\n if cmd == %22e\n@@ -2794,24 +2794,28 @@\n nd%22: %0A      \n+   #\n    break%0A   \n@@ -2811,34 +2811,32 @@\n   break%0A        \n-el\n if cmd ==%22init%22:\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-16-05",
+            "content": "@@ -3343,18 +3343,16 @@\n cil.show\n-()\n %0A%0Aif __n\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-16-25",
+            "content": "@@ -1097,9 +1097,9 @@\n mpat\n-%C3%AD\n+i\n vel%22\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-16-40",
+            "content": "@@ -2354,20 +2354,19 @@\n         \n-bico\n+tip\n _str = s\n@@ -2414,20 +2414,22 @@\n         \n-drum\n+barrel\n _str = %22\n@@ -2539,16 +2539,11 @@\n o: %7B\n-bico_str\n+tip\n _str\n@@ -2555,20 +2555,22 @@\n mbor: %3C%7B\n-drum\n+barrel\n _str%7D%3E%22)\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-18-34",
+            "content": "@@ -2354,19 +2354,20 @@\n         \n-tip\n+bico\n _str = s\n@@ -2415,22 +2415,20 @@\n         \n-barrel\n+drum\n _str = %22\n@@ -2534,19 +2534,24 @@\n  bico: %7B\n-tip\n+bico_str\n _str%7D, t\n@@ -2563,14 +2563,12 @@\n : %3C%7B\n-barrel\n+drum\n _str\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-18-48",
+            "content": "@@ -2484,16 +2484,29 @@\n   print(\n+%0A            \n f%22calibr\n",
+            "lines": "141"
+        },
+        {
+            "label": "2025-11-19_16-19-37",
+            "content": "@@ -1712,17 +1712,16 @@\n __drum%5B1\n-:\n %5D%0A      \n@@ -1909,20 +1909,19 @@\n  self.__\n-bico\n+tip\n .getSize\n@@ -2084,24 +2084,27 @@\n __bico.usage\n+Per\n Sheet()%0A    \n",
+            "lines": "140"
+        },
+        {
+            "label": "2025-11-19_16-27-52",
+            "content": "@@ -1822,16 +1822,23 @@\n (%22fail: \n+grafite\n  nao exi\n@@ -1837,32 +1837,24 @@\n  nao existe \n-grafite \n no bico%22)%0A  \n",
+            "lines": "140"
+        },
+        {
+            "label": "2025-11-19_16-28-30",
+            "content": "@@ -1821,16 +1821,17 @@\n t(%22fail:\n+ \n  nao exi\n",
+            "lines": "140"
+        },
+        {
+            "label": "2025-11-19_16-28-47",
+            "content": "@@ -2424,17 +2424,16 @@\n rel_str \n- \n = %22%22.joi\n@@ -2759,17 +2759,16 @@\n         \n-#\n if cmd =\n@@ -2790,9 +2790,8 @@\n     \n-#\n brea\n",
+            "lines": "140"
+        },
+        {
+            "label": "2025-11-19_16-29-33",
+            "content": "@@ -2756,24 +2756,25 @@\n 0%5D%0A%0A        \n+#\n if cmd == %22e\n@@ -2788,16 +2788,17 @@\n         \n+#\n break%0A  \n",
+            "lines": "140"
+        },
+        {
+            "label": "2025-11-19_16-29-54",
+            "content": "class Lead:\n    def __init__(self, thickness:float, hardness:str, size:int) -> None:\n        self.__thickness= thickness\n        self.__hardness = hardness\n        self.__size=size\n\n    def getThickness(self) ->float:\n        return self.__thickness\n    \n    def getHardness(self) -> str:\n        return self.__hardness\n\n    def getSize(self) -> int:\n        return self.__size\n    \n    def setSize(self, size: int):\n        self.__size =size\n\n    def usageSheet(self ) -> int:\n        if self.__hardness == \"HB\":\n            return 1\n        if self.__hardness ==\"2B\":\n            return 2\n        if self.__hardness == \"4B\":\n            return 4\n        if self.__hardness == \"6B\":\n            return 6\n        return 0\n    \n    def __str__(self) -> str:\n        return f\"[{self.__thickness}:{self.__hardness}:{self.__size}]\"\n\nclass Pencil:\n    def __init__(self, thickness:float) -> None:\n        self.__thickness = thickness\n        self.__bico= None\n        self.__drum = []\n\n    def insert(self, gft):\n        if gft.getThickness() != self.__thickness:\n            print(\"fail: calibre incompat\u00edvel\")\n            return False\n        self.__drum.append(gft)\n        return True\n\n    def remove(self):\n        if self.__bico is not None:\n            gft_removed = self.__bico\n            self.__bico = None\n            return gft_removed\n        return None\n    \n    def pull(self):\n        if self.__bico is not None:\n            print(\"fail: ja existe grafite no bico\")\n            return False\n        \n        if not self.__drum:\n            print(\"fail: tambor esta vazio\")\n            return False\n        \n        pull_gft = self.__drum[0]\n        self.__bico  = pull_gft\n        self.__drum = self.__drum[1:]\n        return True\n    \n    def writePage(self):\n        if self.__bico is None:\n            print(\"fail: nao existe grafite no bico\")\n            return \n        \n        current_size = self.__bico.getSize()\n        if current_size <= 10:\n            print(\"fail: tamanho insuficiente\")\n            self.remove()\n            return\n        \n        wear = self.__bico.usageSheet()\n        new_size = current_size - wear\n\n        if new_size < 10:\n            print(\"fail: folha incompleta\")\n            self.__bico.setSize(10)\n            self.remove\n        else:\n            self.__bico.setSize(new_size)\n\n    def show(self):\n        tip_str = str(self.__bico) if self.__bico else \"[]\"\n        barrel_str  = \"\".join(str(lead) for lead in self.__drum)\n        print(f\"calibre: {self.__thickness}, bico: {tip_str}, tambor: <{barrel_str}>\")\n\ndef main():\n    pencil=Pencil(0)\n    while True:\n        line=input()\n        print(f\"${line}\")\n        args=line.split()\n\n        if len(args)== 0:\n            continue\n\n        cmd = args[0]\n\n        if cmd == \"end\": \n         break\n        elif cmd ==\"init\":\n            pencil=Pencil(float(args[1]))\n        elif cmd == \"insert\":\n            thickness = float(args[1])\n            hardness = args[2]\n            size = int(args[3])\n            lead = Lead(thickness, hardness, size)\n            pencil.insert(lead)\n\n        elif cmd ==\"pull\":\n            if pencil:\n                pencil.pull()\n\n        elif cmd == \"remove\":\n            pencil.remove()\n\n        elif cmd == \"write\":\n            pencil.writePage()\n\n        elif cmd == \"show\":\n            pencil.show()\n\nif __name__ == \"__main__\":\n    main()\n\n    \n\n            \n\n\n\n        \n\n    \n",
+            "lines": "140"
+        }
+    ]
+}
